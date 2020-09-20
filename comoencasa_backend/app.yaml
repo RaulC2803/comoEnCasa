@@ -1,0 +1,4 @@
+# descriptor para GCP, configuracion para app en GCP
+
+runtime: java11
+instance_class: F2
