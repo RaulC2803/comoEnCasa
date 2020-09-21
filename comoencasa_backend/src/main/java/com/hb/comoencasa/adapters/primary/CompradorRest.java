@@ -3,7 +3,6 @@ package com.hb.comoencasa.adapters.primary;
 import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.domain.Role;
 import com.hb.comoencasa.domain.User;
-import com.hb.comoencasa.ports.primary.AuthService;
 import com.hb.comoencasa.ports.primary.CompradorService;
 import com.hb.comoencasa.ports.primary.RoleService;
 import com.hb.comoencasa.ports.primary.UserService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+//import com.hb.comoencasa.ports.primary.AuthService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ public class CompradorRest {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private AuthService authService;
+    //@Autowired
+    //private AuthService authService;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
