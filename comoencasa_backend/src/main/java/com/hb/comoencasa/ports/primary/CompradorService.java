@@ -2,9 +2,9 @@ package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.ports.secondary.CompradorRepository;
-import com.hb.comoencasa.ports.secondary.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import com.hb.comoencasa.ports.secondary.RoleRepository;
 
 
 @Service
@@ -12,11 +12,11 @@ public class CompradorService {
     @Autowired
     private CompradorRepository compradorRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private cecUserDetailsService CecUserDetailsService;
+    //@Autowired
+    //private RoleRepository roleRepository;
+//
+    //@Autowired
+    //private cecUserDetailsService CecUserDetailsService;
 
 
 

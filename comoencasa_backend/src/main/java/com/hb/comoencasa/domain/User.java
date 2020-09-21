@@ -6,6 +6,11 @@ import java.util.Collection;
 
 @Entity
 public class User implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 4317967085354723053L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
