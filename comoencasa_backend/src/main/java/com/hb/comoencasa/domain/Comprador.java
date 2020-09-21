@@ -6,6 +6,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Comprador")
 public class Comprador implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2383841434344119378L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComprador;
