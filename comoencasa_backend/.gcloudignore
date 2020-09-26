@@ -1,4 +1,5 @@
 target/
-.mvn
+.vscode/
+.mvn/
 mvnw
 mvnw.cmd
