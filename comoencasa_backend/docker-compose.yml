@@ -2,7 +2,7 @@ version: '3.8'
 
 services: 
     back:
-        image: cec-back:0.3
+        image: jifloresp/cec-back:0.2
         restart: always
         ports: 
             - 4000:8080
