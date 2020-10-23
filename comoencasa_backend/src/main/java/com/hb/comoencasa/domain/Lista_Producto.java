@@ -15,8 +15,8 @@ public class Lista_Producto {
     private Producto producto;
 
     @ManyToOne()
-    @JoinColumn(name = "Cliente_Id")
-    private Comprador cliente;
+    @JoinColumn(name = "Comprador_Id")
+    private Comprador comprador;
 
     public Long getCodigo() {
         return codigo;
@@ -34,11 +34,11 @@ public class Lista_Producto {
         this.producto = producto;
     }
 
-    public Comprador getCliente() {
-        return cliente;
+    public Comprador getComprador() {
+        return comprador;
     }
 
-    public void setCliente(Comprador cliente) {
-        this.cliente = cliente;
+    public void setComprador(Comprador comprador) {
+        this.comprador = comprador;
     }
 }
