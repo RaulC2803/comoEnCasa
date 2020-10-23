@@ -28,7 +28,11 @@ public class Producto implements Serializable {
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    List<Lista_Producto> lista_producto;
+    private List<Lista_Producto> lista_producto;
+
+    @OneToMany(mappedBy = "producto", cascade=CascadeType.ALL)
+    @JsonIgnore
+    private List<Resena> resena;
 
     public Long getIdProducto() {
         return idProducto;

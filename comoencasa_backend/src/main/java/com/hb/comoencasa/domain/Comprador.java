@@ -33,6 +33,10 @@ public class Comprador implements Serializable {
     @JsonIgnoreProperties(value = {"comprador"}, allowSetters = true)
     private List<Lista_Producto> lista_producto;
 
+    @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY, cascade =CascadeType.ALL)
+    @JsonIgnoreProperties(value= {"comprador"}, allowSetters = true)
+    private List<Resena> lista_resena;
+
     public List<Lista_Producto> getLista_producto() {
         return lista_producto;
     }

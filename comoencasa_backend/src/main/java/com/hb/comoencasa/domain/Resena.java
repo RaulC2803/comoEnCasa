@@ -17,6 +17,14 @@ public class Resena implements Serializable {
     private String date;
     private int stars;
 
+    @ManyToOne()
+    @JoinColumn(name="compradorID")
+    private Comprador comprador;
+
+    @ManyToOne()
+    @JoinColumn (name="productoID")
+    private Producto producto;
+
     public String getComentary() {
         return comentary;
     }
