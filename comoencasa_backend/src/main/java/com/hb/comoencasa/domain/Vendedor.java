@@ -30,7 +30,7 @@ public class Vendedor implements Serializable {
     private byte[] photo;
 
     @OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"bodega"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"vendedor"}, allowSetters = true)
     private List<Producto> producto;
 
     public static long getSerialVersionUID() {

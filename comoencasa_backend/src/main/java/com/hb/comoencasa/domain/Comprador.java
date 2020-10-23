@@ -28,7 +28,7 @@ public class Comprador implements Serializable {
     private String password;
     private String address;
     private byte[] photo;
-
+    
     @OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"comprador"}, allowSetters = true)
     private List<Lista_Producto> lista_producto;
