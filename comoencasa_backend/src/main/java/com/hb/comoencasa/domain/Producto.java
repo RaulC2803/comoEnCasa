@@ -1,7 +1,10 @@
 package com.hb.comoencasa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Producto")
@@ -18,6 +21,38 @@ public class Producto implements Serializable {
     private String description;
     private String images;
     private String tags;
+
+    @ManyToOne()
+    @JoinColumn(name = "vendedor_Id")
+    private Vendedor vendedor;
+
+    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Lista_Producto> lista_producto;
+
+    public Long getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public List<Lista_Producto> getLista_producto() {
+        return lista_producto;
+    }
+
+    public void setLista_producto(List<Lista_Producto> lista_producto) {
+        this.lista_producto = lista_producto;
+    }
 
     public String getName() {
         return name;

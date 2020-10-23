@@ -1,7 +1,10 @@
 package com.hb.comoencasa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Comprador")
@@ -25,6 +28,18 @@ public class Comprador implements Serializable {
     private String password;
     private String address;
     private byte[] photo;
+
+    @OneToMany(mappedBy = "comprador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = {"comprador"}, allowSetters = true)
+    private List<Lista_Producto> lista_producto;
+
+    public List<Lista_Producto> getLista_producto() {
+        return lista_producto;
+    }
+
+    public void setLista_producto(List<Lista_Producto> lista_producto) {
+        this.lista_producto = lista_producto;
+    }
 
     public Long getIdComprador() {
         return idComprador;
