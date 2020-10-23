@@ -12,17 +12,6 @@ public class ProductoService {
    @Autowired
    private ProductoRepository productoRepository;
 
-   public Producto register (Producto producto) throws Exception {
-       Producto p=producto;
-
-       if (p==null){
-           throw new Exception("Producto no registrado");
-       } else{
-           System.out.println("Registrando producto");
-           return productoRepository.save(p);
-       }
-   }
-
    public List <Producto> listProducts (){
        return productoRepository.findAll();
    }
@@ -51,5 +40,9 @@ public class ProductoService {
     }
     public List<Producto> filtrarPorPrecio (Double f, Double s){
        return productoRepository.filtrarPorPrecio(f,s);
+    }
+
+    public List<Producto> obtenerPorVendedor (Long id){
+       return productoRepository.productosVendedor(id);
     }
 }

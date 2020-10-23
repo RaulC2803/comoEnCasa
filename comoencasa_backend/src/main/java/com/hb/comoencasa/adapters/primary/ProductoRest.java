@@ -35,21 +35,6 @@ public class ProductoRest {
     private BCryptPasswordEncoder encoder;
 
     @Transactional
-    @PostMapping ("/registrar")
-    public Producto registrar (@RequestBody Producto producto){
-        Producto p= null;
-        User u = new User();
-        try{
-            p  =producto;
-            productoService.register(p);
-            return p;
-
-        }catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se puede registrar un Producto");
-        }
-    }
-
-    @Transactional
     @GetMapping("/listar")
     public List<Producto> listar (){
         return productoService.listProducts();
@@ -96,4 +81,10 @@ public class ProductoRest {
     public List<Producto> filtrarPrecio (@PathVariable(value="low")Double f, @PathVariable (value="high")Double s){
         return productoService.filtrarPorPrecio(f,s);
     }
+
+    @GetMapping ("/obtener/vendedor/{id}")
+    public List<Producto>  obtenerPorVendedor (@PathVariable(value="id")Long Id){
+        return productoService.obtenerPorVendedor(Id);
+    }
+
 }
