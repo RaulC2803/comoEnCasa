@@ -45,4 +45,11 @@ public class ProductoService {
         productoRepository.delete(producto);
         return producto;
     }
+
+    public List<Producto> busquedaPorNombre(String name){
+        return productoRepository.buscar(name);
+    }
+    public List<Producto> filtrarPorPrecio (Double f, Double s){
+       return productoRepository.filtrarPorPrecio(f,s);
+    }
 }

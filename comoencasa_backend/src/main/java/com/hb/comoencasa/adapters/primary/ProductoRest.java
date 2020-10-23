@@ -87,4 +87,13 @@ public class ProductoRest {
         }
         return p;
     }
+    @GetMapping ("/buscar/{name}")
+    public List<Producto> buscarPorNombre(@PathVariable(value="name")String nombre){
+        return productoService.busquedaPorNombre(nombre);
+    }
+
+    @GetMapping ("/buscar/{low}/{high}")
+    public List<Producto> filtrarPrecio (@PathVariable(value="low")Double f, @PathVariable (value="high")Double s){
+        return productoService.filtrarPorPrecio(f,s);
+    }
 }
