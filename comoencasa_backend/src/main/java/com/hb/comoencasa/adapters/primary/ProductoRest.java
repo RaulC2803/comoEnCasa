@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/producto")
+@CrossOrigin(origins = "*")
 public class ProductoRest {
     @Autowired
     private ProductoService productoService;
