@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
-    @Query ("select p from Producto p where p.name like %?1% or p.tags like %?1% or p.description like %?1%")
+    @Query ("select p from Producto p where p.name like %?1% or p.tags like %?1% or p.description like %?1% or p.categoria like %?1%")
     public List<Producto> buscar (String name);
 
     @Query ("select p from Producto p where p.price between ?1 and ?2")

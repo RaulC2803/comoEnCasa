@@ -38,11 +38,11 @@ public class ProductoService {
     public List<Producto> busquedaPorNombre(String name){
         return productoRepository.buscar(name);
     }
+
     public List<Producto> filtrarPorPrecio (Double f, Double s){
        return productoRepository.filtrarPorPrecio(f,s);
     }
 
-    public List<Producto> obtenerPorVendedor (Long id){
-       return productoRepository.productosVendedor(id);
+    public List<Producto> obtenerPorVendedor (Long id){return productoRepository.productosVendedor(id);
     }
 }
