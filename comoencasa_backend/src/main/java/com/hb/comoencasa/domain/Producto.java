@@ -19,6 +19,7 @@ public class Producto implements Serializable {
     private String name;
     private double price;
     private String description;
+    private String categoria;
     private String images;
     private String tags;
 
@@ -65,6 +66,10 @@ public class Producto implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getCategoria(){return name;}
+
+    public void setCategoria(String caegoria){this.categoria=categoria;}
 
     public double getPrice() {
         return price;

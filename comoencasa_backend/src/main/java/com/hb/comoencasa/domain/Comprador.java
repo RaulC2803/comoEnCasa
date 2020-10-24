@@ -17,6 +17,7 @@ public class Comprador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComprador;
     private String name;
+    private String lastname;
     @Column(unique = true)
     private String username;
     private String date;
@@ -59,6 +60,14 @@ public class Comprador implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastName() {
+        return lastname;
+    }
+
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getUsername() {
