@@ -27,8 +27,15 @@ public class ProductoService {
         p.setImages(producto.getImages());
         p.setName(producto.getName());
         p.setTags(producto.getTags());
+        p.setStock(producto.getStock());
         return productoRepository.save(p);
     }
+    public Producto updateStock (Long id,Producto producto) throws Exception {
+       Producto p=productoRepository.findById(id).orElseThrow(()->new Exception("No se encontro producto"));
+       p.setStock(producto.getStock());
+       return productoRepository.save(p);
+    }
+
     public Producto deleteProduct(Long id) throws Exception {
         Producto producto = productoRepository.findById(id).orElseThrow(() -> new Exception("No se encontro producto"));
         productoRepository.delete(producto);
@@ -45,4 +52,5 @@ public class ProductoService {
 
     public List<Producto> obtenerPorVendedor (Long id){return productoRepository.productosVendedor(id);
     }
+
 }

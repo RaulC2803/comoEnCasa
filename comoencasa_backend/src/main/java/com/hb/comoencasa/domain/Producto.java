@@ -22,6 +22,7 @@ public class Producto implements Serializable {
     private String categoria;
     private String images;
     private String tags;
+    private double stock;
 
     @ManyToOne()
     @JoinColumn(name = "vendedor_Id")
@@ -70,6 +71,10 @@ public class Producto implements Serializable {
     public String getCategoria(){return name;}
 
     public void setCategoria(String caegoria){this.categoria=categoria;}
+
+    public Double getStock(){return stock;}
+
+    public void setStock(Double stock) {this.stock=stock;}
 
     public double getPrice() {
         return price;

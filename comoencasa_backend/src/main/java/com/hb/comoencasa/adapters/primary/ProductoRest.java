@@ -62,6 +62,18 @@ public class ProductoRest {
         return p;
     }
 
+    @PutMapping("/actualizarStock/{id}")
+    public Producto actualizarStock (@PathVariable(value="id")Long id,@RequestBody Producto producto) throws Exception{
+        Producto p=null;
+        try{
+            p=productoService.updateProduct(id,producto);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se pudo concretar");
+        }
+        return p;
+
+    }
+
     @DeleteMapping("/eliminar/{id}")
     public Producto eliminarProducto(@PathVariable(value = "id") Long id) throws Exception {
         Producto p = null;
