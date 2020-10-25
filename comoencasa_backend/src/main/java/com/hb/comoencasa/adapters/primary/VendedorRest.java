@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vendedor")
+@CrossOrigin(origins = "*")
 public class VendedorRest {
     @Autowired
     private VendedorService vendedorService;
