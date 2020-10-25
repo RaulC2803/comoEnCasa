@@ -5,11 +5,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Lista_Producto")
-public class Lista_Producto {
+public class                                                                                                                                                                                                                                        Lista_Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-
+    private Boolean agregado;
     @ManyToOne()
     @JoinColumn(name = "Producto_Id")
     private Producto producto;
@@ -17,6 +17,15 @@ public class Lista_Producto {
     @ManyToOne()
     @JoinColumn(name = "Comprador_Id")
     private Comprador comprador;
+
+    public Boolean getAgregado() {
+        return agregado;
+    }
+
+    public void setAgregado(Boolean agregado) {
+        this.agregado = agregado;
+    }
+
 
     public Long getCodigo() {
         return codigo;

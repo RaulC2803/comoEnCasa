@@ -66,4 +66,9 @@ public class VendedorRest {
         }
     }
 
+    @GetMapping("/factura/obtener/{id}")
+    public List<Factura> obtenerFacturas(@PathVariable(value = "id") Long Id){
+        return vendedorService.obtenerFporVendedor(Id);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.hb.comoencasa.adapters.primary;
 
 import com.hb.comoencasa.domain.Comprador;
+import com.hb.comoencasa.domain.Factura;
 import com.hb.comoencasa.domain.Role;
 import com.hb.comoencasa.domain.User;
 import com.hb.comoencasa.ports.primary.CompradorService;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/comprador")
 @CrossOrigin(origins = "*")
+
 public class CompradorRest {
     @Autowired
     private CompradorService compradorService;
@@ -56,6 +58,24 @@ public class CompradorRest {
 
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se puede registrar un Comprador");
+        }
+    }
+
+
+    @GetMapping("/factura/listar/{id}")
+    public List<Factura> listarFacturas(@PathVariable(value = "id") Long Id){
+        return compradorService.listarFacturasComprador(Id);
+    }
+
+
+    @PostMapping("/factura/registrar/{idc}/{idp}")
+    public Factura registrarFactura(@RequestBody Factura factura, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
+        Factura f = null;
+        try{
+            f = factura;
+            return compradorService.registrarFactura(f,IdC,IdP);
+        } catch(Exception e){
+            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 }

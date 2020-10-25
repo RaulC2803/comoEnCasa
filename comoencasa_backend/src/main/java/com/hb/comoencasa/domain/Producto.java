@@ -1,6 +1,7 @@
 package com.hb.comoencasa.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,9 +33,33 @@ public class Producto implements Serializable {
     @JsonIgnore
     private List<Lista_Producto> lista_producto;
 
+    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Factura> Facturas;
+
     @OneToMany(mappedBy = "producto", cascade=CascadeType.ALL)
     @JsonIgnore
     private List<Resena> resena;
+
+    public void setStock(double stock) {
+        this.stock = stock;
+    }
+
+    public List<Factura> getFacturas() {
+        return Facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        Facturas = facturas;
+    }
+
+    public List<Resena> getResena() {
+        return resena;
+    }
+
+    public void setResena(List<Resena> resena) {
+        this.resena = resena;
+    }
 
     public Long getIdProducto() {
         return idProducto;

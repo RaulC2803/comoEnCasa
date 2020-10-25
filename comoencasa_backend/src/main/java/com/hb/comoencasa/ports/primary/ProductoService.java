@@ -42,6 +42,10 @@ public class ProductoService {
         return producto;
     }
 
+    public Producto obtenerProductoporId(Long Id){
+       return productoRepository.findById(Id).get();
+    }
+
     public List<Producto> busquedaPorNombre(String name){
         return productoRepository.buscar(name);
     }

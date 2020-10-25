@@ -1,8 +1,10 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Comprador;
+import com.hb.comoencasa.domain.Factura;
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Vendedor;
+import com.hb.comoencasa.ports.secondary.FacturaRepository;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
 import com.hb.comoencasa.ports.secondary.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class VendedorService {
 
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Autowired
+    private FacturaRepository facturaRepository;
 
     public Vendedor registrar(Vendedor vendedor) throws Exception {
         Vendedor v = null;
@@ -55,5 +60,9 @@ public class VendedorService {
 
     public List<Producto> obtenerPporVendedor(Long id){
         return productoRepository.productosVendedor(id);
+    }
+
+    public List<Factura> obtenerFporVendedor(Long Id) {
+        return facturaRepository.facturasVendedor(Id);
     }
 }

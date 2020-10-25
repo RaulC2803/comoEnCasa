@@ -1,5 +1,6 @@
 package com.hb.comoencasa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class Vendedor implements Serializable {
     private byte[] photo;
 
     @OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"vendedor"}, allowSetters = true)
+    @JsonIgnore
     private List<Producto> producto;
 
     public static long getSerialVersionUID() {
