@@ -1,6 +1,5 @@
 package com.hb.comoencasa.ports.primary;
 
-import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.domain.Factura;
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Vendedor;

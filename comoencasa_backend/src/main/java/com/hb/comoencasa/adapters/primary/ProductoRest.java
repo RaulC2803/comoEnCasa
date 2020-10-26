@@ -1,8 +1,6 @@
 package com.hb.comoencasa.adapters.primary;
 
 import com.hb.comoencasa.domain.Producto;
-import com.hb.comoencasa.domain.Role;
-import com.hb.comoencasa.domain.User;
 import com.hb.comoencasa.ports.primary.ProductoService;
 import com.hb.comoencasa.ports.primary.RoleService;
 import com.hb.comoencasa.ports.primary.UserService;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
