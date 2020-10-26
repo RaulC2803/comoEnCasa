@@ -2,6 +2,7 @@ package com.hb.comoencasa.adapters.primary;
 
 import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.domain.Factura;
+import com.hb.comoencasa.domain.Lista_Producto;
 import com.hb.comoencasa.domain.Role;
 import com.hb.comoencasa.domain.User;
 import com.hb.comoencasa.ports.primary.CompradorService;
@@ -78,4 +79,16 @@ public class CompradorRest {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
+    
+    @PostMapping("/lista/anadir/{idc}/{idp}")
+    public Lista_Producto anadirProducto(@RequestBody Lista_Producto lista_producto, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
+        Lista_Producto p = null;
+        try{
+            p = lista_producto;
+            return compradorService.anadirProducto(p, IdC, IdP);
+        }catch (Exception e){
+            throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+    
 }

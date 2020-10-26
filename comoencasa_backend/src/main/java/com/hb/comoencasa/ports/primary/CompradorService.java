@@ -2,6 +2,7 @@ package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.domain.Factura;
+import com.hb.comoencasa.domain.Lista_Producto;
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Vendedor;
 import com.hb.comoencasa.ports.secondary.CompradorRepository;
@@ -70,4 +71,28 @@ public class CompradorService {
     public List<Factura> listarFacturasComprador(Long Id){
         return facturaRepository.facturasComprador(Id);
     }
+    
+    public Lista_Producto anadirProducto(Lista_Producto producto, Long IdC, Long IdP) throws Exception{
+        Lista_Producto p = null;
+        p = producto;
+
+        if (p == null){
+            throw new Exception("No se pudo agregar");
+        }else{
+            System.out.println("Producto agregado a la lista");
+            return listaProductoRepository.save(p);
+        }
+
+    }
+
+    public List<Lista_Producto> listarProductosComprador(Long Id){
+        return listaProductoRepository.productosComprador(Id);
+    }
+
+    public Lista_Producto eliminarProductoLista(Long id) throws Exception {
+        Lista_Producto producto = listaProductoRepository.findById(id).orElseThrow(() -> new Exception("No se encontro producto"));
+        listaProductoRepository.delete(producto);
+        return producto;
+    }
 }
+
