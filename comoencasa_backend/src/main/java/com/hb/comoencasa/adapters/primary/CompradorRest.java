@@ -1,10 +1,6 @@
 package com.hb.comoencasa.adapters.primary;
 
-import com.hb.comoencasa.domain.Comprador;
-import com.hb.comoencasa.domain.Factura;
-import com.hb.comoencasa.domain.Lista_Producto;
-import com.hb.comoencasa.domain.Role;
-import com.hb.comoencasa.domain.User;
+import com.hb.comoencasa.domain.*;
 import com.hb.comoencasa.ports.primary.CompradorService;
 import com.hb.comoencasa.ports.primary.RoleService;
 import com.hb.comoencasa.ports.primary.UserService;
@@ -79,7 +75,7 @@ public class CompradorRest {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
-    
+
     @PostMapping("/lista/anadir/{idc}/{idp}")
     public Lista_Producto anadirProducto(@RequestBody Lista_Producto lista_producto, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
         Lista_Producto p = null;
@@ -90,5 +86,40 @@ public class CompradorRest {
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
-    
+
+    @DeleteMapping("/lista/eliminar/{id}")
+    public Lista_Producto eliminarProducto(@PathVariable(value = "id") Long id) throws Exception {
+        Lista_Producto p = null;
+        try {
+            p = compradorService.eliminarProductoLista(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se pudo concretar");
+        }
+        return p;
+    }
+
+    @GetMapping("/lista/listar/{id}")
+    public List<Lista_Producto> listarProductos(@PathVariable(value = "id")Long Id){
+        return compradorService.listarProductosComprador(Id);
+    }
+
+
+    @PostMapping("/resena/anadir/{idc}/{idp}")
+    public Resena anadirresena(@RequestBody Resena resena, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
+        Resena r = null;
+        try{
+            r = resena;
+            return compradorService.anadirResena(r,IdC,IdP);
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @GetMapping("/resena/listar/{id}")
+    public List<Resena> listarResenas(@PathVariable(value = "id") Long Id){
+        return compradorService.listarResenas(Id);
+    }
+
+
+
 }

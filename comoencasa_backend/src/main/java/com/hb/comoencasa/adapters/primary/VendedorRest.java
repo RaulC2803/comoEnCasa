@@ -71,4 +71,8 @@ public class VendedorRest {
         return vendedorService.obtenerFporVendedor(Id);
     }
 
+    @GetMapping("/resena/listar/{id}")
+    public List<Resena> obtenerResenas(@PathVariable(value = "id") Long Id){
+        return vendedorService.obtenerRporVendedor(Id);
+    }
 }

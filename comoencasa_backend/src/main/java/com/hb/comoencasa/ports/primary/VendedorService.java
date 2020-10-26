@@ -1,11 +1,9 @@
 package com.hb.comoencasa.ports.primary;
 
-import com.hb.comoencasa.domain.Comprador;
-import com.hb.comoencasa.domain.Factura;
-import com.hb.comoencasa.domain.Producto;
-import com.hb.comoencasa.domain.Vendedor;
+import com.hb.comoencasa.domain.*;
 import com.hb.comoencasa.ports.secondary.FacturaRepository;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
+import com.hb.comoencasa.ports.secondary.ResenaRepository;
 import com.hb.comoencasa.ports.secondary.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +21,9 @@ public class VendedorService {
 
     @Autowired
     private FacturaRepository facturaRepository;
+
+    @Autowired
+    private ResenaRepository resenaRepository;
 
     public Vendedor registrar(Vendedor vendedor) throws Exception {
         Vendedor v = null;
@@ -65,4 +66,6 @@ public class VendedorService {
     public List<Factura> obtenerFporVendedor(Long Id) {
         return facturaRepository.facturasVendedor(Id);
     }
+
+    public List<Resena> obtenerRporVendedor(Long Id){ return resenaRepository.resenasVendedor(Id); }
 }
