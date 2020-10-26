@@ -43,8 +43,9 @@ public class CompradorService {
        }
     }
 
-    public Comprador obtenerComprador(Long Id){
-        return compradorRepository.findById(Id).get();
+    public Comprador obtenerComprador(Long Id) throws Exception{
+        return compradorRepository.findById(Id).orElseThrow(
+            ()->new Exception("No se encontro comprador"));
     }
 
     public Factura registrarFactura(Factura factura, Long IdC, Long IdP) throws Exception{
