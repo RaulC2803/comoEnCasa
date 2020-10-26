@@ -35,7 +35,7 @@ public class CompradorService {
     private ResenaRepository resenaRepository;
     //@Autowired
     //private RoleRepository roleRepository;
-//
+
     //@Autowired
     //private cecUserDetailsService CecUserDetailsService;
 
@@ -64,13 +64,13 @@ public class CompradorService {
         Comprador c = null;
         c = obtenerComprador(IdC);
         Producto p = null;
-        p = productoRepository.findById(IdP).get();
-        f.setComprador(c);
-        f.setProducto(p);
-        f.setSubTotal(p.getPrice());
-        f.setTotal((f.getCantidad() * f.getSubTotal()) + f.getEnvio());
+        p = productoRepository.findById(IdP).orElseThrow(() -> new Exception("No se encontro producto"));
         if (p == null || f == null || c == null) throw new Exception("No se pudo registrar");
         else{
+            f.setComprador(c);
+            f.setProducto(p);
+            f.setSubTotal(p.getPrice());
+            f.setTotal((f.getCantidad() * f.getSubTotal()) + f.getEnvio());
             System.out.println("Se registró el producto");
             return facturaRepository.save(f);
         }
@@ -87,13 +87,13 @@ public class CompradorService {
         p = producto;
         Comprador c = null;
         c = obtenerComprador(IdC);
-        Producto p1 = null;
-        p1 = productoRepository.findById(IdP).get();
-        p.setComprador(c);
-        p.setProducto(p1);
         if (p == null) {
             throw new Exception("No se pudo agregar");
         } else {
+            Producto p1 = null;
+            p1 = productoRepository.findById(IdP).get();
+            p.setComprador(c);
+            p.setProducto(p1);
             System.out.println("Producto agregado a la lista");
             return listaProductoRepository.save(p);
         }
@@ -114,13 +114,13 @@ public class CompradorService {
         r = resena;
         Comprador c = null;
         c = obtenerComprador(IdC);
-        Producto p1 = null;
-        p1 = productoRepository.findById(IdP).get();
-        r.setComprador(c);
-        r.setProducto(p1);
         if (r == null){
             throw new Exception("No se pudo agregar la reseña");
         }else{
+            Producto p1 = null;
+            p1 = productoRepository.findById(IdP).get();
+            r.setComprador(c);
+            r.setProducto(p1);
             System.out.println("Reseña agregada");
             return resenaRepository.save(r);
 
