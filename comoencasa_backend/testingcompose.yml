@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  maven:
+    image: maven:3.6.3-jdk-11-slim
+    command: sh /tmp/testing.sh
+
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /tmp/credentials/docker-credentials.json
+    volumes:
+      - ./credentials:/tmp/credentials
+      - ./src:/tmp/src
+      - ./pom.xml:/tmp/pom.xml
+      - ./testing.sh:/tmp/testing.sh
+      - ./target:/tmp/target
+      - mvn2_conf:/root/.m2
+
+
+volumes:
+  mvn2_conf:
