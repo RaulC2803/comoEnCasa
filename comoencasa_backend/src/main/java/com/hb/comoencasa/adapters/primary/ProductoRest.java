@@ -6,6 +6,7 @@ import com.hb.comoencasa.domain.User;
 import com.hb.comoencasa.ports.primary.ProductoService;
 import com.hb.comoencasa.ports.primary.RoleService;
 import com.hb.comoencasa.ports.primary.UserService;
+import org.apache.commons.codec.language.bm.Lang;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -96,7 +97,7 @@ public class ProductoRest {
     }
 
     @GetMapping ("/obtener/vendedor/{id}")
-    public List<Producto>  obtenerPorVendedor (@PathVariable(value="id")Long Id){
+    public List<Producto>  obtenerPorVendedor (@PathVariable(value="id") Long Id){
         return productoService.obtenerPorVendedor(Id);
     }
 

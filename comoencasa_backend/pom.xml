@@ -79,9 +79,27 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.12.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-		
-		
 	</dependencies>
 
 	<build>
@@ -90,6 +108,40 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Jacoco configuration -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<!--suppress UnresolvedMavenProperty -->
+				<!--<version>${dependency.jacoco.version}</version>-->
+				<configuration>
+					<excludes>
+						<exclude>**/MainApplication*</exclude>
+						<exclude>**/util/constants/*</exclude>
+						<exclude>**/*Test.java</exclude>
+						<exclude>**/*event/message/third/party/*</exclude>
+						<exclude>**/*Config*</exclude>
+						<exclude>**/entity/*</exclude>
+						<exclude>**/queue/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Jacoco configuration -->
+
 		</plugins>
 	</build>
 

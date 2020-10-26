@@ -2,6 +2,7 @@ package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
+import org.apache.commons.codec.language.bm.Lang;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,6 @@ public class ProductoService {
         Producto p = productoRepository.findById(id).orElseThrow(() -> new Exception("No se encontro el producto"));
         p.setDescription(producto.getDescription());
         p.setPrice(producto.getPrice());
-        p.setImages(producto.getImages());
         p.setName(producto.getName());
         p.setTags(producto.getTags());
         p.setStock(producto.getStock());
