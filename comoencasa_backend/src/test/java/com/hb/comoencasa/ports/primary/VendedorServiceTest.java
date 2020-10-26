@@ -4,15 +4,16 @@ import com.hb.comoencasa.domain.Factura;
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Vendedor;
 import com.hb.comoencasa.ports.secondary.VendedorRepository;
-import io.jsonwebtoken.lang.Assert;
+
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.Access;
 import java.util.List;
 import java.util.Optional;
 import static org.mockito.Mockito.when;
@@ -20,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class VendedorServiceTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class VendedorServiceTest {
 
     @MockBean
     VendedorRepository vendedorRepository;
@@ -32,12 +34,12 @@ class VendedorServiceTest {
     ProductoService productoService;
 
     @Test
-    void registrar() throws Exception {
+    void validateZRegistrar() throws Exception {
 
     }
 
     @Test
-    public void obtenerVendedor() throws Exception {
+    public void validateAObtenerVendedor() throws Exception {
         Long vendedorId=334325423554L;
         Vendedor vendedor = new Vendedor() ;
 
@@ -50,12 +52,12 @@ class VendedorServiceTest {
     }
 
     @Test
-    void registrarProducto() {
+    void validateZRegistrarProducto() {
 
     }
 
     @Test
-    void obtenerPporVendedor() {
+    void validateBObtenerPporVendedor() {
 
         Long vendedorID=324L;
         Vendedor vendedor=new Vendedor();
@@ -69,7 +71,7 @@ class VendedorServiceTest {
     }
 
     @Test
-    void obtenerFporVendedor() {
+    void validateCObtenerFporVendedor() {
         Long vendedorID=324L;
         Vendedor vendedor=new Vendedor();
 

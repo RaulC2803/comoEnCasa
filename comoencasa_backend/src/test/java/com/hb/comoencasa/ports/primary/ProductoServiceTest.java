@@ -1,36 +1,30 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Producto;
-import com.hb.comoencasa.ports.secondary.VendedorRepository;
 import io.jsonwebtoken.lang.Assert;
-import org.junit.Rule;
+
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class ProductoServiceTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class ProductoServiceTest {
 
     @Autowired
     private ProductoService productoService;
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
+    
     @Test
-    public void obtenerPorVendedor() {
+    public void validateAObtenerPorVendedor() {
         //EXISTEN PRODUCTOS GUARDADOS
         //Dado que me encuentro en mi cuenta principal
         //Cuando haga click en el botón de visualizar mis productos
@@ -40,7 +34,7 @@ class ProductoServiceTest {
     }
 
     @Test
-    public void obtenerPorVendedor1() {
+    public void validateAObtenerPorVendedor1() {
         //NO EXISTEN PRODUCTOS GUARDADOS
         //Dado que me encuentro en mi cuenta principal
         //Cuando haga click en el botón de visualizar mis productos
@@ -50,14 +44,14 @@ class ProductoServiceTest {
     }
 
     @Test
-    public void getProduct() throws Exception {
+    public void validateBGetProduct() throws Exception {
         Producto producto=productoService.getProduct((long)2);
         assertNotNull(producto);
         assertEquals(producto.getName(),"CocaCola");
     }
 
     @Test
-    public void updateProduct() throws Exception {
+    public void validateCUpdateProduct() throws Exception {
         //LLENÓ TODOS LOS CAMPOS
         Producto producto=new Producto();
         producto.setName("InkaCola");
@@ -75,7 +69,7 @@ class ProductoServiceTest {
     }
 
     @Test
-    public void updateProduct1() throws Exception {
+    public void validateCUpdateProduct1() throws Exception {
         //NO LLENÓ TODOS LOS CAMPOS
         Producto producto=new Producto();
         producto.setName("InkaCola");
@@ -93,7 +87,7 @@ class ProductoServiceTest {
     }
 
     @Test
-    public void updateStock() throws Exception {
+    public void validateDUpdateStock() throws Exception {
 
         Producto producto=new Producto();
         producto.setStock(5);
@@ -102,7 +96,7 @@ class ProductoServiceTest {
 
     }
     @Test
-    public void updateStock1() throws Exception {
+    public void validateDUpdateStock1() throws Exception {
         Producto producto=new Producto();
         producto.setStock(5);
         Producto p= productoService.updateStock((long)5,producto);
@@ -110,32 +104,32 @@ class ProductoServiceTest {
     }
 
     @Test
-    void deleteProduct() throws Exception {
+    void validateEDeleteProduct() throws Exception {
         Producto producto =productoService.deleteProduct((long) 5);
         Assert.notNull(producto.getIdProducto());
 
     }
 
     @Test
-    void busquedaPorNombre() {
+    void validateFBusquedaPorNombre() {
         List <Producto> producto=productoService.busquedaPorNombre("Bebida");
         Assert.notEmpty(producto);
     }
 
     @Test
-    void filtrarPorPrecio() {
+    void validateGFiltrarPorPrecio() {
         List<Producto> producto=productoService.filtrarPorPrecio(2.0,10.0);
         Assert.notEmpty(producto);
     }
 
     @Test
-    void listProducts() {
+    void validateHListProducts() {
         List<Producto> producto=productoService.listProducts();
         Assert.notEmpty(producto);
     }
 
     @Test
-    void getProductoById(){
+    void validateIGetProductoById(){
         Producto producto=productoService.obtenerProductoporId((long)2);
         Assert.notNull(producto);
 
