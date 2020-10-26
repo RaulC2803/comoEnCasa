@@ -2,6 +2,7 @@ package com.hb.comoencasa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.hb.comoencasa.domain.Comprador;
 import com.hb.comoencasa.domain.Factura;
@@ -28,8 +29,6 @@ public class CompradorServiceTest {
     @Autowired
     private ProductoService productoService;
 
-    private Comprador comprador = new Comprador();
-
     @Test
     public void validateAObtenerComprador() throws Exception{
         int id = 1;
@@ -46,21 +45,47 @@ public class CompradorServiceTest {
 
     @Test
     public void validateBRegister() throws Exception {
-        initComprador();
+        Comprador comp = new Comprador();
+        comp.setName("Pipe");
+        comp.setLastName("Hernandez");
+        comp.setUsername("Qepe01");
+        comp.setPassword("sudperpasswd");
+        comp.setAddress("Av. dPalomar 123");
+        comp.setEmail("epp@gmail.com");
+        
+        Comprador registrado = compradorService.register(comp);
 
-        Comprador registrado = compradorService.register(this.comprador);
+        assertEquals(registrado.getIdComprador(), comp.getIdComprador());
+        assertEquals(registrado.getName(), comp.getName());
+        assertEquals(registrado.getLastName(), comp.getLastName());
+        assertEquals(registrado.getUsername(), comp.getUsername());
+        assertEquals(registrado.getEmail(), comp.getEmail());
+        assertEquals(registrado.getAddress(), comp.getAddress());
+    }
+    
+    @Test
+    public void validateBRegisterFallido() throws Exception {
+        Comprador comp = new Comprador();
+        comp.setName("Fallo");
+        comp.setLastName("Catastrofico");
+        comp.setUsername("Fallo01");
+        comp.setPassword("sudperpasswd");
+        comp.setAddress("Av. dPalomar 123");
+        
+        Comprador registrado = compradorService.register(comp);
 
-        assertEquals(registrado.getIdComprador(), this.comprador.getIdComprador());
-        assertEquals(registrado.getName(), this.comprador.getName());
-        assertEquals(registrado.getLastName(), this.comprador.getLastName());
-        assertEquals(registrado.getUsername(), this.comprador.getUsername());
-        assertEquals(registrado.getEmail(), this.comprador.getEmail());
-        assertEquals(registrado.getAddress(), this.comprador.getAddress());
+        assertNotNull(registrado.getIdComprador());
+        assertNotNull(registrado.getName());
+        assertNotNull(registrado.getLastName());
+        assertNotNull(registrado.getUsername());
+        assertNull(registrado.getEmail());
+        assertNull(registrado.getDni());
+        assertNotNull(registrado.getAddress());
     }
 
     @Test
-    public void validateCListarFactura(){
-        List<Factura> facturas = compradorService.listarFacturasComprador(this.comprador.getIdComprador());
+    public void validateCListarFactura() throws Exception {
+        List<Factura> facturas = compradorService.listarFacturasComprador((long) 1);
 
         assertEquals(facturas.size(), 0);
     }
@@ -85,15 +110,5 @@ public class CompradorServiceTest {
         assertEquals(registro.getComprador().getIdComprador(), comp.getIdComprador());
         assertEquals(registro.getProducto().getIdProducto(), prod.getIdProducto());
         assertEquals(registro.getTotal(), factura.getTotal());
-    }
-
-
-    private void initComprador(){
-        this.comprador.setName("Pipe");
-        this.comprador.setLastName("Hernandez");
-        this.comprador.setUsername("Qepe01");
-        this.comprador.setPassword("sudperpasswd");
-        this.comprador.setAddress("Av. dPalomar 123");
-        this.comprador.setEmail("epp@gmail.com");
     }
 }

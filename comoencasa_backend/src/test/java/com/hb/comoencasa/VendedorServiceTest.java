@@ -1,8 +1,10 @@
-package com.hb.comoencasa.ports.primary;
+package com.hb.comoencasa;
 
 import com.hb.comoencasa.domain.Factura;
 import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Vendedor;
+import com.hb.comoencasa.ports.primary.ProductoService;
+import com.hb.comoencasa.ports.primary.VendedorService;
 import com.hb.comoencasa.ports.secondary.VendedorRepository;
 
 import org.junit.FixMethodOrder;

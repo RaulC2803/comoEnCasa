@@ -1,6 +1,8 @@
-package com.hb.comoencasa.ports.primary;
+package com.hb.comoencasa;
 
 import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.ports.primary.ProductoService;
+
 import io.jsonwebtoken.lang.Assert;
 
 import org.junit.FixMethodOrder;

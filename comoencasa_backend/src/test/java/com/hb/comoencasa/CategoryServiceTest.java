@@ -38,6 +38,6 @@ public class CategoryServiceTest {
     public void validateBGetCategories() {
         List<Categoria> lista = categoryService.getCategories();
 
-        assertEquals(lista.size(), 8);
+        assertEquals(lista.size(), 7);
     }
 }
