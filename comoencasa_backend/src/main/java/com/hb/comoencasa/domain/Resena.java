@@ -25,6 +25,30 @@ public class Resena implements Serializable {
     @JoinColumn (name="productoID")
     private Producto producto;
 
+    public Long getIdResena() {
+        return idResena;
+    }
+
+    public void setIdResena(Long idResena) {
+        this.idResena = idResena;
+    }
+
+    public Comprador getComprador() {
+        return comprador;
+    }
+
+    public void setComprador(Comprador comprador) {
+        this.comprador = comprador;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     public String getComentary() {
         return comentary;
     }

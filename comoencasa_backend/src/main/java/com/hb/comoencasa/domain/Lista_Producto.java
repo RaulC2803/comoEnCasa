@@ -10,6 +10,10 @@ public class                                                                    
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private Boolean agregado;
+    private int cantidad;
+
+
+
     @ManyToOne()
     @JoinColumn(name = "Producto_Id")
     private Producto producto;
@@ -49,5 +53,13 @@ public class                                                                    
 
     public void setComprador(Comprador comprador) {
         this.comprador = comprador;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
