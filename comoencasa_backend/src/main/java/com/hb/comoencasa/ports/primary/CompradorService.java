@@ -4,6 +4,12 @@ package com.hb.comoencasa.ports.primary;
 import com.hb.comoencasa.domain.*;
 import com.hb.comoencasa.ports.secondary.*;
 
+import com.hb.comoencasa.domain.Comprador;
+import com.hb.comoencasa.domain.Factura;
+import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.ports.secondary.CompradorRepository;
+import com.hb.comoencasa.ports.secondary.FacturaRepository;
+import com.hb.comoencasa.ports.secondary.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +53,9 @@ public class CompradorService {
        }
     }
 
-    public Comprador obtenerComprador(Long Id){
-        return compradorRepository.findById(Id).get();
+    public Comprador obtenerComprador(Long Id) throws Exception{
+        return compradorRepository.findById(Id).orElseThrow(
+            ()->new Exception("No se encontro comprador"));
     }
 
     public Factura registrarFactura(Factura factura, Long IdC, Long IdP) throws Exception{

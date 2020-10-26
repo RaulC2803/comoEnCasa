@@ -1,6 +1,10 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.*;
+
+import com.hb.comoencasa.domain.Factura;
+import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.domain.Vendedor;
 import com.hb.comoencasa.ports.secondary.FacturaRepository;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
 import com.hb.comoencasa.ports.secondary.ResenaRepository;
