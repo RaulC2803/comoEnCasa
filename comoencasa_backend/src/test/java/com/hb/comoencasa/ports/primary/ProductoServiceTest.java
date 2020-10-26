@@ -111,7 +111,7 @@ class ProductoServiceTest {
 
     @Test
     void deleteProduct() throws Exception {
-        Producto producto =productoService.deleteProduct((long) 4);
+        Producto producto =productoService.deleteProduct((long) 5);
         Assert.notNull(producto.getIdProducto());
 
     }

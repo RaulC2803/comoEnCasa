@@ -11,19 +11,26 @@ import com.hb.comoencasa.ports.primary.ProductoService;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class CompradorServiceTest {
+    @Autowired
     private CompradorService compradorService;
+    @Autowired
     private ProductoService productoService;
+
     private Comprador comprador = new Comprador();
     private Factura factura = new Factura();
-    private Producto producto = null;
+    private Producto producto = new Producto();
 
     @Test
     public void validateAObtenerComprador() throws Exception{
@@ -62,29 +69,29 @@ public class CompradorServiceTest {
 
     @Test
     public void validateDRegistrarFactura() throws Exception { 
-        initProducto();
+        //initProducto();
+        this.producto = this.productoService.obtenerProductoporId((long) 2);
         initFactura();
-
-        this.compradorService.registrarFactura(this.factura, this.comprador.getIdComprador(), this.producto.getIdProducto());
-    
-        assertEquals(this.factura.getCantidad(), 5);
-        assertEquals(this.factura.getComprador(), this.comprador);
-        assertEquals(this.factura.getProducto(), this.producto);
-        assertEquals(this.factura.getTotal(), 200);
+        Factura registro= compradorService.registrarFactura(this.factura, (long)44, (long)2);
+        assertNotNull(registro);
+        assertEquals(registro.getCantidad(), 5);
+        assertEquals(registro.getComprador(), this.comprador);
+        assertEquals(registro.getProducto(), this.producto);
+        assertEquals(registro.getTotal(), 200);
     }
 
 
     private void initComprador(){
-        this.comprador.setName("Pepe");
-        this.comprador.setLastName("Fernandez");
-        this.comprador.setUsername("Pepe01");
-        this.comprador.setPassword("superpasswd");
-        this.comprador.setAddress("Av. Palomar 123");
-        this.comprador.setEmail("epep@gmail.com");
+        this.comprador.setName("Pipe");
+        this.comprador.setLastName("Hernandez");
+        this.comprador.setUsername("Qepe01");
+        this.comprador.setPassword("sudperpasswd");
+        this.comprador.setAddress("Av. dPalomar 123");
+        this.comprador.setEmail("epp@gmail.com");
     }
 
     private void initProducto(){
-        this.producto = this.productoService.obtenerProductoporId((long) 5);
+        this.producto = this.productoService.obtenerProductoporId((long) 2);
     }
 
     private void initFactura(){

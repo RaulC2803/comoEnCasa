@@ -8,12 +8,19 @@ import com.hb.comoencasa.ports.primary.UserService;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserServiceTest {
+    @Autowired
     private UserService userService;
-    private User user;
+    private User user=new User();
 
     @Test
     public void validateARegistrar(){
@@ -25,15 +32,15 @@ public class UserServiceTest {
 
     @Test
     public void validateBFindUserByName(){
-       User buscado = userService.findByUsername(this.user.getUsername());
+        initUser();
+        User buscado = userService.findByUsername("ManoPaloSanto1");
 
        assertNotNull(buscado);
-       assertEquals(buscado.getId(), this.user.getId());
        assertEquals(buscado.getUsername(), this.user.getUsername());
     }
 
     private void initUser(){
-        this.user = new User();
-        user.setUsername("ManoPaloSanto");
+
+        user.setUsername("ManoPaloSanto1");
     }
 }
