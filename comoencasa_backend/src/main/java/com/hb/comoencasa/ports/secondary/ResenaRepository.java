@@ -1,6 +1,5 @@
 package com.hb.comoencasa.ports.secondary;
 
-import com.hb.comoencasa.domain.Producto;
 import com.hb.comoencasa.domain.Resena;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

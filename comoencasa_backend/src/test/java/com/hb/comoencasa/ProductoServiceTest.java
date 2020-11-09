@@ -1,33 +1,49 @@
-package com.hb.comoencasa.ports.primary;
+package com.hb.comoencasa;
 
 import com.hb.comoencasa.domain.Producto;
+
 import io.jsonwebtoken.lang.Assert;
 import org.junit.Rule;
 
 import org.junit.rules.ExpectedException;
+
+import com.hb.comoencasa.ports.primary.ProductoService;
+
+import io.jsonwebtoken.lang.Assert;
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.Test;
+
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductoServiceTest {
 
     @Autowired
     private ProductoService productoService;
 
+
     @Rule
     public ExpectedException expected = ExpectedException.none();
 
     @Test
-    public void obtenerPorVendedor() {
+    public void validateAObtenerPorVendedor() {
         //EXISTEN PRODUCTOS GUARDADOS
         //Dado que me encuentro en mi cuenta principal
         //Cuando haga click en el botón de visualizar mis productos
@@ -37,7 +53,7 @@ public class ProductoServiceTest {
     }
 
     @Test
-    public void obtenerPorVendedor1() {
+    public void validateAObtenerPorVendedor1() {
         //NO EXISTEN PRODUCTOS GUARDADOS
         //Dado que me encuentro en mi cuenta principal
         //Cuando haga click en el botón de visualizar mis productos
@@ -49,6 +65,7 @@ public class ProductoServiceTest {
     @Test
     public void getProduct() throws Exception {
         //OBTUVO
+
         Producto producto=productoService.getProduct((long)2);
         assertNotNull(producto);
         assertEquals(producto.getName(),"CocaCola");
@@ -61,7 +78,7 @@ public class ProductoServiceTest {
         assertNull(producto);
     }
     @Test
-    public void updateProduct() throws Exception {
+    public void validateCUpdateProduct() throws Exception {
         //LLENÓ TODOS LOS CAMPOS
         Producto producto=new Producto();
         producto.setName("InkaCola");
@@ -79,7 +96,7 @@ public class ProductoServiceTest {
     }
 
     @Test
-    public void updateProduct1() throws Exception {
+    public void validateCUpdateProduct1() throws Exception {
         //NO LLENÓ TODOS LOS CAMPOS
         Producto producto=new Producto();
         producto.setName("InkaCola");
@@ -116,7 +133,7 @@ public class ProductoServiceTest {
 
 
     @Test
-    public void updateStock() throws Exception {
+    public void validateDUpdateStock() throws Exception {
 
         Producto producto=new Producto();
         producto.setStock(5);
@@ -135,7 +152,7 @@ public class ProductoServiceTest {
 
     }
     @Test
-    public void updateStock1() throws Exception {
+    public void validateDUpdateStock1() throws Exception {
         Producto producto=new Producto();
         producto.setStock(5);
         Producto p= productoService.updateStock((long)5,producto);
@@ -162,11 +179,13 @@ public class ProductoServiceTest {
 
     @Test
     public void filtrarPorPrecio() {
+
         List<Producto> producto=productoService.filtrarPorPrecio(2.0,10.0);
         Assert.notEmpty(producto);
     }
 
     @Test
+
     public void filtrarPorPrecio1() {
         List<Producto> producto=productoService.filtrarPorPrecio(3242432.1,1000000.0);
         assertEquals(producto.size(),0);
@@ -174,12 +193,14 @@ public class ProductoServiceTest {
 
     @Test
     public void listProducts() {
+
         List<Producto> producto=productoService.listProducts();
         Assert.notEmpty(producto);
     }
 
     @Test
     public void getProductoById(){
+
         Producto producto=productoService.obtenerProductoporId((long)2);
         Assert.notNull(producto);
     }

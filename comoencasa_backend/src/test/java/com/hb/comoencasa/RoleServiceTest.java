@@ -1,6 +1,7 @@
-package com.hb.comoencasa.ports.primary;
+package com.hb.comoencasa;
 
 import com.hb.comoencasa.domain.Role;
+import com.hb.comoencasa.ports.primary.RoleService;
 import org.junit.FixMethodOrder;
 import  org.junit.Test;
 import org.junit.runner.RunWith;

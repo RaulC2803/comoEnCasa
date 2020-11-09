@@ -48,6 +48,7 @@ public class CompradorServiceTest {
         Comprador comp = new Comprador();
         comp.setName("Pipe");
         comp.setLastName("Hernandez");
+
         comp.setUsername("die3321uguito22");
         comp.setPassword("sudperpasswd");
         comp.setAddress("Av. dPalomar 123");
@@ -63,6 +64,7 @@ public class CompradorServiceTest {
         assertEquals(registrado.getAddress(), comp.getAddress());
     }
 
+
     @Test (expected = Exception.class)
     public void validateBRegisterFallido() throws Exception {
         Comprador comp = null;
@@ -73,7 +75,8 @@ public class CompradorServiceTest {
 
     @Test
     public void validateCListarFactura() throws Exception {
-        List<Factura> facturas = compradorService.listarFacturasComprador((long) 2);
+
+        List<Factura> facturas = compradorService.listarFacturasComprador((long) 1);
 
         assertEquals(facturas.size(), 0);
     }
@@ -84,7 +87,6 @@ public class CompradorServiceTest {
         // this.producto = this.productoService.obtenerProductoporId((long) 2);
         Comprador comp = compradorService.obtenerComprador((long)1);
         Producto prod = productoService.obtenerProductoporId((long)7);
-
         Factura factura =  new Factura();
         factura.setCantidad(5);
         factura.setComprador(comp);
@@ -170,5 +172,6 @@ public class CompradorServiceTest {
         Lista_Producto listproduct=null;
         Lista_Producto l=compradorService.anadirProducto(listproduct,(long)1, (long)7);
         assertNull(l.getCantidad());
+
     }
 }
