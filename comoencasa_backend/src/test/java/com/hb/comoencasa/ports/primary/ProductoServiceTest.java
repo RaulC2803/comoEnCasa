@@ -1,33 +1,30 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Producto;
-import com.hb.comoencasa.ports.secondary.VendedorRepository;
 import io.jsonwebtoken.lang.Assert;
 import org.junit.Rule;
-import org.junit.jupiter.api.Test;
+
 import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.parameters.P;
+import org.junit.Test;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class ProductoServiceTest {
+public class ProductoServiceTest {
 
     @Autowired
     private ProductoService productoService;
 
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public ExpectedException expected = ExpectedException.none();
 
     @Test
     public void obtenerPorVendedor() {
@@ -51,11 +48,18 @@ class ProductoServiceTest {
 
     @Test
     public void getProduct() throws Exception {
+        //OBTUVO
         Producto producto=productoService.getProduct((long)2);
         assertNotNull(producto);
         assertEquals(producto.getName(),"CocaCola");
     }
 
+    @Test(expected=Exception.class)
+    public void getProductFallido() throws Exception {
+        //OBTUVO
+        Producto producto=productoService.getProduct((long)900);
+        assertNull(producto);
+    }
     @Test
     public void updateProduct() throws Exception {
         //LLENÓ TODOS LOS CAMPOS
@@ -92,10 +96,39 @@ class ProductoServiceTest {
         assertNotNull(p.getStock());
     }
 
+    @Test (expected = Exception.class)
+    public void updateProductFallido() throws Exception {
+        //NO LLENÓ TODOS LOS CAMPOS
+        Producto producto=null;
+        producto.setName("InkaCola");
+        producto.setPrice(3.0);
+        producto.setDescription("Bebida gasificada");
+        producto.setTags("Gaseosa Bebida");
+        producto.setStock(5);
+        Producto p=productoService.updateProduct((long)3,producto);
+
+        assertNotNull(p.getPrice());
+        assertNotNull(p.getName());
+        assertNotNull(p.getDescription());
+        assertNotNull(p.getTags());
+        assertNotNull(p.getStock());
+    }
+
+
     @Test
     public void updateStock() throws Exception {
 
         Producto producto=new Producto();
+        producto.setStock(5);
+        Producto p= productoService.updateStock((long)2,producto);
+        assertEquals(p.getStock(),5,.1);
+
+    }
+
+    @Test (expected = Exception.class)
+    public void updateStockFallido() throws Exception {
+
+        Producto producto=null;
         producto.setStock(5);
         Producto p= productoService.updateStock((long)2,producto);
         assertEquals(p.getStock(),5,.1);
@@ -110,34 +143,44 @@ class ProductoServiceTest {
     }
 
     @Test
-    void deleteProduct() throws Exception {
-        Producto producto =productoService.deleteProduct((long) 5);
+    public void deleteProduct() throws Exception {
+        Producto producto =productoService.deleteProduct((long) 11);
         Assert.notNull(producto.getIdProducto());
-
     }
 
     @Test
-    void busquedaPorNombre() {
+    public void busquedaPorNombre() {
         List <Producto> producto=productoService.busquedaPorNombre("Bebida");
         Assert.notEmpty(producto);
     }
 
     @Test
-    void filtrarPorPrecio() {
+    public void busquedaPorNombre1() {
+        List <Producto> producto=productoService.busquedaPorNombre("BebiTda");
+        assertEquals(producto.size(),0);
+    }
+
+    @Test
+    public void filtrarPorPrecio() {
         List<Producto> producto=productoService.filtrarPorPrecio(2.0,10.0);
         Assert.notEmpty(producto);
     }
 
     @Test
-    void listProducts() {
+    public void filtrarPorPrecio1() {
+        List<Producto> producto=productoService.filtrarPorPrecio(3242432.1,1000000.0);
+        assertEquals(producto.size(),0);
+    }
+
+    @Test
+    public void listProducts() {
         List<Producto> producto=productoService.listProducts();
         Assert.notEmpty(producto);
     }
 
     @Test
-    void getProductoById(){
+    public void getProductoById(){
         Producto producto=productoService.obtenerProductoporId((long)2);
         Assert.notNull(producto);
-
     }
 }

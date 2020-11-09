@@ -11,3 +11,12 @@ services:
             PROJECT_ID: comoencasa-289703
             REGION: us-central1
             INSTANCE_ID: comoencasa
+    frontend:
+        image: jifloresp/cec-back:0.2
+        networks:
+            - apinet
+        ports:
+            - 8089:80
+networks:
+    apinet:
+        driver: bridge

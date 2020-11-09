@@ -15,6 +15,5 @@ services:
       - ./target:/tmp/target
       - mvn2_conf:/root/.m2
 
-
 volumes:
   mvn2_conf:
