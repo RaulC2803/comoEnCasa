@@ -12,7 +12,7 @@ services:
             REGION: us-central1
             INSTANCE_ID: comoencasa
     frontend:
-        image: jifloresp/cec-back:0.2
+        image: xandermmr/frontend:1.2.2
         networks:
             - apinet
         ports:

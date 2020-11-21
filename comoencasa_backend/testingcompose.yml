@@ -14,6 +14,13 @@ services:
       - ./testing.sh:/tmp/testing.sh
       - ./target:/tmp/target
       - mvn2_conf:/root/.m2
+    networks:
+      - sonar_sonarnet
+
+
+networks:
+  sonar_sonarnet:
+    external: true
 
 volumes:
   mvn2_conf:

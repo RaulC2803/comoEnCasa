@@ -1,13 +1,7 @@
 package com.hb.comoencasa;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import com.hb.comoencasa.domain.*;
 import com.hb.comoencasa.ports.primary.CompradorService;
 import com.hb.comoencasa.ports.primary.ProductoService;
-
 import io.jsonwebtoken.lang.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -18,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,10 +45,10 @@ public class CompradorServiceTest {
         comp.setName("Pipe");
         comp.setLastName("Hernandez");
 
-        comp.setUsername("die3321uguito22");
+        comp.setUsername("dipguito22");
         comp.setPassword("sudperpasswd");
         comp.setAddress("Av. dPalomar 123");
-        comp.setEmail("baz42t3n34@gmail.com");
+        comp.setEmail("baz4p2t3n34@gmail.com");
 
         Comprador registrado = compradorService.register(comp);
 
@@ -122,7 +118,7 @@ public class CompradorServiceTest {
 
     @Test
     public void eliminarProductosListaTest() throws Exception{
-        Lista_Producto producto =compradorService.eliminarProductoLista((long) 15);
+        Lista_Producto producto =compradorService.eliminarProductoLista((long) 22);
         Assert.notNull(producto.getCodigo());
     }
     @Test (expected = Exception.class)

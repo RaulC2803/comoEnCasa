@@ -6,24 +6,15 @@ import com.hb.comoencasa.domain.Resena;
 import com.hb.comoencasa.domain.Vendedor;
 import com.hb.comoencasa.ports.primary.ProductoService;
 import com.hb.comoencasa.ports.primary.VendedorService;
-
 import io.jsonwebtoken.lang.Assert;
 import org.junit.Test;
-
-
-import org.junit.FixMethodOrder;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
-import static org.mockito.Mockito.when;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -40,8 +31,8 @@ public class VendedorServiceTest {
     @Test
     public void registrar() throws Exception {
         Vendedor vendedor= new Vendedor();
-        vendedor.setUsername("xanderM");
-        vendedor.setEmail("xandee@gmail.com");
+        vendedor.setUsername("xandewerM");
+        vendedor.setEmail("xredee@gmail.com");
         vendedor.setN_mobile("937347382");
         vendedor.setDni("71322244");
         vendedor.setLastname("Melendez");

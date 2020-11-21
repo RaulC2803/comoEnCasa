@@ -9,3 +9,10 @@ mvn jacoco:report
 #echo "Ejecutando testing calidad sonarqube"
 # http://sonarqube:9000 (Docker for windows, Docker for MAC o Docker Linux)
 # http://192.168.99.101:9000 (Docker for toolbox) Usa la IP!!!
+echo "Ejecutando testing calidad sonarqube"
+# http://sonarqube:9000 (Docker for windows, Docker for MAC o Docker Linux)
+# http://192.168.99.101:9000 (Docker for toolbox) Usa la IP!!!
+mvn sonar:sonar \
+  -Dsonar.projectKey=api-student \
+  -Dsonar.host.url=http://sonarqube:9000 \
+  -Dsonar.login=bf993e4a11c27db909044e16e83a9dac780708d2

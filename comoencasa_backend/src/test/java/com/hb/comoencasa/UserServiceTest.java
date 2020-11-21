@@ -1,11 +1,7 @@
 package com.hb.comoencasa;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.hb.comoencasa.domain.User;
 import com.hb.comoencasa.ports.primary.UserService;
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +9,9 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +31,7 @@ public class UserServiceTest {
     @Test
     public void validateBFindUserByName(){
         initUser();
-        User buscado = userService.findByUsername("43ManoPaloSan2to1");
+        User buscado = userService.findByUsername("12ManoPaloSan2to1");
 
        assertNotNull(buscado);
        assertEquals(buscado.getUsername(), this.user.getUsername());
@@ -40,6 +39,6 @@ public class UserServiceTest {
 
     private void initUser(){
 
-        user.setUsername("43ManoPaloSan2to1");
+        user.setUsername("12ManoPaloSan2to1");
     }
 }

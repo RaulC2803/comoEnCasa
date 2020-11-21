@@ -8,6 +8,7 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.hb</groupId>
 	<artifactId>comoencasa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -17,6 +18,10 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+		<node.version>v10.13.0</node.version>
+		<yarn.version>v1.12.1</yarn.version>
+		<dependency.jacoco.version>0.8.4</dependency.jacoco.version>
 	</properties>
 
 	<!-- para usar la API Admin SQL de GCP-->
@@ -45,6 +50,7 @@
 			<version>3.12.2</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -75,6 +81,14 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -108,21 +122,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 			<!-- Jacoco configuration -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<!--suppress UnresolvedMavenProperty -->
-				<!--<version>${dependency.jacoco.version}</version>-->
 				<configuration>
 					<excludes>
-						<exclude>**/MainApplication*</exclude>
+						<!--<exclude>**/MainApplication*</exclude>
 						<exclude>**/util/constants/*</exclude>
 						<exclude>**/*Test.java</exclude>
 						<exclude>**/*event/message/third/party/*</exclude>
 						<exclude>**/*Config*</exclude>
 						<exclude>**/entity/*</exclude>
-						<exclude>**/queue/*</exclude>
+						<exclude>**/queue/*</exclude>-->
 					</excludes>
 				</configuration>
 				<executions>

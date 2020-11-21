@@ -30,6 +30,6 @@ public class AuthServiceTest {
 
     private void initUser(){
 
-        user.setUsername("25ManoPaloSan2to1");
+        user.setUsername("25Man8oPaloSan2to1");
     }
 }
