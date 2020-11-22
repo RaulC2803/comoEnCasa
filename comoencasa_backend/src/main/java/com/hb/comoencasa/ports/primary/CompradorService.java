@@ -131,5 +131,8 @@ public class CompradorService {
     public List<Resena> listarResenas(Long Id) {
         return resenaRepository.resenasComprador(Id);
     }
+
+
+
 }
 
