@@ -102,5 +102,11 @@ public class ProductoRest {
         return productoService.listarResenaPorProducto(Id);
     }
 
+    @GetMapping("/categoria/{nCategoria}")
+    public List<Producto> listarPorductoPorCategoria(@PathVariable(value = "nCategoria") String Id){
+        return productoService.filtrarPorCategoria(Id);
+    }
+
+
 
 }

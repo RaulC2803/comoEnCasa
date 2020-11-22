@@ -65,4 +65,10 @@ public class ProductoService {
         return resenaRepository.resenasProducto(Id);
     }
 
+    public List<Producto> filtrarPorCategoria (String categoria)
+    {
+        return productoRepository.productosPorCategoria(categoria);
+
+    }
+
 }

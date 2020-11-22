@@ -27,7 +27,7 @@ public class Producto implements Serializable {
     @ManyToOne()
     @JoinColumn(name = "vendedor_Id")
     private Vendedor vendedor;
-
+    
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Lista_Producto> lista_producto;
@@ -39,6 +39,8 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "producto", cascade=CascadeType.ALL)
     @JsonIgnore
     private List<Resena> resena;
+
+
 
     public void setStock(double stock) {
         this.stock = stock;
