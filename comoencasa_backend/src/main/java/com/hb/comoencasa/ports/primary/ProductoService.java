@@ -1,7 +1,9 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.domain.Resena;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
+import com.hb.comoencasa.ports.secondary.ResenaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import java.util.List;
 public class ProductoService {
    @Autowired
    private ProductoRepository productoRepository;
+
+   @Autowired
+   private ResenaRepository resenaRepository;
 
    public List <Producto> listProducts (){
        return productoRepository.findAll();
@@ -54,6 +59,10 @@ public class ProductoService {
     }
 
     public List<Producto> obtenerPorVendedor (Long id){return productoRepository.productosVendedor(id);
+    }
+
+    public List<Resena> listarResenaPorProducto(Long Id){
+        return resenaRepository.resenasProducto(Id);
     }
 
 }

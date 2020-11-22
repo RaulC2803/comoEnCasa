@@ -13,4 +13,7 @@ public interface ResenaRepository extends JpaRepository<Resena, Long> {
 
     @Query("select r from Resena r where r.comprador.idComprador = :id")
     public List<Resena> resenasComprador (@Param("id")Long Id);
+
+    @Query ("select r from Resena r where r.producto.idProducto= :id")
+    public List<Resena> resenasProducto (@Param("id")Long Id);
 }

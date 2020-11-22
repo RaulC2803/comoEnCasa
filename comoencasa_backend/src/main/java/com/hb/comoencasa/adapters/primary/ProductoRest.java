@@ -1,6 +1,7 @@
 package com.hb.comoencasa.adapters.primary;
 
 import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.domain.Resena;
 import com.hb.comoencasa.ports.primary.ProductoService;
 import com.hb.comoencasa.ports.primary.RoleService;
 import com.hb.comoencasa.ports.primary.UserService;
@@ -96,5 +97,10 @@ public class ProductoRest {
     public List<Producto>  obtenerPorVendedor (@PathVariable(value="id") Long Id){
         return productoService.obtenerPorVendedor(Id);
     }
+    @GetMapping("/resena/listar/{id}")
+    public List<Resena> listarResenaPorProducto(@PathVariable(value = "id") Long Id){
+        return productoService.listarResenaPorProducto(Id);
+    }
+
 
 }
