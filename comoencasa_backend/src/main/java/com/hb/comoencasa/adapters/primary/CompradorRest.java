@@ -120,7 +120,7 @@ public class CompradorRest {
         return compradorService.listarResenas(Id);
     }
 
-    @GetMapping ("/obtener/{id}")
+    @GetMapping ("/get/{id}")
     public Comprador obtenerComprador (@PathVariable(value="id")Long Id) throws Exception{
         return compradorService.obtenerComprador(Id);
     }

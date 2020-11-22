@@ -107,6 +107,8 @@ public class ProductoRest {
         return productoService.filtrarPorCategoria(Id);
     }
 
-
-
+    @GetMapping("/stars/{id}")
+    public List<Integer> obtenerStars(@PathVariable(value="id")Long Id){
+        return productoService.obtenerStars(Id);
+    }
 }

@@ -7,6 +7,7 @@ import com.hb.comoencasa.ports.secondary.ResenaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,6 +70,23 @@ public class ProductoService {
     {
         return productoRepository.productosPorCategoria(categoria);
 
+    }
+    public List<Integer> obtenerStars(Long Id){
+       List<Resena> resenas = listarResenaPorProducto(Id);
+       List<Integer> stars = new ArrayList<Integer>();
+       stars.add(0);
+        stars.add(0);
+        stars.add(0);
+        stars.add(0);
+        stars.add(0);
+        stars.add(0);
+        stars.add(0);
+        for (int i = 0; i < resenas.size(); i++){
+            int star = resenas.get(i).getStars();
+            stars.set(star, stars.get(star)+1);
+            stars.set(6, stars.get(6) + 1);
+        }
+        return stars;
     }
 
 }
