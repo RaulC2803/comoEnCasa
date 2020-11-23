@@ -124,7 +124,13 @@ public class CompradorRest {
 
     @GetMapping ("/get/{id}")
     public CompradorDTO obtenerComprador (@PathVariable(value="id")Long Id) throws Exception{
-        CompradorDTO compradorDTO = new CompradorDTO(compradorService.obtenerComprador(Id));
+        CompradorDTO compradorDTO = null;
+        compradorDTO = new CompradorDTO(compradorService.obtenerComprador(Id));
+        if (compradorDTO == null){
+            System.out.println("Se mando mal");
+        }else{
+            System.out.println("Respuesta correcta");
+        }
         return compradorDTO;
     }
 
