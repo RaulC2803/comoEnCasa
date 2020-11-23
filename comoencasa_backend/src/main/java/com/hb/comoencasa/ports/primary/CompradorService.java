@@ -66,7 +66,7 @@ public class CompradorService {
         Producto p = null;
         p = productoRepository.findById(IdP).orElseThrow(() -> new Exception("No se encontro producto"));
         if (p == null || f == null || c == null) throw new Exception("No se pudo registrar");
-        else{
+        else {
             f.setComprador(c);
             f.setProducto(p);
             f.setSubTotal(p.getPrice());
@@ -74,7 +74,6 @@ public class CompradorService {
             System.out.println("Se registró el producto");
             return facturaRepository.save(f);
         }
-
     }
 
     public List<Factura> listarFacturasComprador(Long Id){
