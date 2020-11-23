@@ -20,7 +20,8 @@ public class Producto implements Serializable {
     private double price;
     private String description;
     private String categoria;
-    private String images;
+    @Column(name = "imagen",length = 100000)
+    private byte[] imagen;
     private String tags;
     private double stock;
 
@@ -118,19 +119,21 @@ public class Producto implements Serializable {
         this.description = description;
     }
 
-    public String getImages() {
-        return images;
-    }
+    public byte[] getImagen() {
+		return imagen;
+	}
 
-    public void setImages(String images) {
-        this.images = images;
-    }
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
 
-    public String getTags() {
+	public String getTags() {
         return tags;
     }
 
     public void setTags(String tags) {
         this.tags = tags;
     }
+    
+    
 }
