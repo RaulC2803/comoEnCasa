@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/comprador")
@@ -60,17 +61,18 @@ public class CompradorRest {
 
 
     @GetMapping("/factura/listar/{id}")
-    public List<Factura> listarFacturas(@PathVariable(value = "id") Long Id){
-        return compradorService.listarFacturasComprador(Id);
+    public Stream<FacturaDTO> listarFacturas(@PathVariable(value = "id") Long Id){
+        return compradorService.listarFacturasComprador(Id).stream().map(FacturaDTO::new);
     }
 
 
     @PostMapping("/factura/registrar/{idc}/{idp}")
-    public Factura registrarFactura(@RequestBody Factura factura, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
+    public FacturaDTO registrarFactura(@RequestBody Factura factura, @PathVariable(value = "idc") Long IdC, @PathVariable(value = "idp") Long IdP){
         Factura f = null;
         try{
             f = factura;
-            return compradorService.registrarFactura(f,IdC,IdP);
+            FacturaDTO facturaDTO = new FacturaDTO(compradorService.registrarFactura(f,IdC,IdP));
+            return facturaDTO;
         } catch(Exception e){
             throw  new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -121,8 +123,9 @@ public class CompradorRest {
     }
 
     @GetMapping ("/get/{id}")
-    public Comprador obtenerComprador (@PathVariable(value="id")Long Id) throws Exception{
-        return compradorService.obtenerComprador(Id);
+    public CompradorDTO obtenerComprador (@PathVariable(value="id")Long Id) throws Exception{
+        CompradorDTO compradorDTO = new CompradorDTO(compradorService.obtenerComprador(Id));
+        return compradorDTO;
     }
 
 }

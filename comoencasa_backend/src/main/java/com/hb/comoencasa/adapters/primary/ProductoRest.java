@@ -1,6 +1,7 @@
 package com.hb.comoencasa.adapters.primary;
 
 import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.domain.ProductoDTO;
 import com.hb.comoencasa.domain.Resena;
 import com.hb.comoencasa.ports.primary.ProductoService;
 import com.hb.comoencasa.ports.primary.RoleService;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping ("/producto")
@@ -34,12 +36,17 @@ public class ProductoRest {
     private BCryptPasswordEncoder encoder;
 
     @Transactional
-    @GetMapping("/listar")
+    @GetMapping("/obtener")
     public List<Producto> listar (){
         return productoService.listProducts();
     }
+    @Transactional
+    @GetMapping("/listar")
+    public Stream<ProductoDTO> listarProductos (){
+        return productoService.listProducts().stream().map(ProductoDTO::new);
+    }
 
-    @GetMapping ("/obtener/{id}")
+    @GetMapping ("/listar/{id}")
     public Producto obtenerProducto (@PathVariable(value="id") Long id){
         Producto p=null;
         try{
@@ -48,6 +55,19 @@ public class ProductoRest {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró producto");
         }
         return p;
+    }
+
+    @GetMapping ("/obtener/{id}")
+    public ProductoDTO obtenerProductoDTO (@PathVariable(value="id") Long id){
+        Producto p=null;
+        ProductoDTO productoDTO = null;
+        try{
+            p=productoService.getProduct(id);
+            productoDTO = new ProductoDTO(p);
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No se encontró producto");
+        }
+        return productoDTO;
     }
 
     @PutMapping("/actualizar/{id}")
