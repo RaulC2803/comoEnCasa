@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
@@ -103,6 +104,7 @@ public class ProductoRest {
         }
         return p;
     }
+    
     @GetMapping ("/buscar/{name}")
     public List<Producto> buscarPorNombre(@PathVariable(value="name")String nombre){
         return productoService.busquedaPorNombre(nombre);
@@ -130,5 +132,10 @@ public class ProductoRest {
     @GetMapping("/stars/{id}")
     public List<Integer> obtenerStars(@PathVariable(value="id")Long Id){
         return productoService.obtenerStars(Id);
+    }
+    
+    @PostMapping("/upload_imagen_producto/{id}")
+    public ProductoDTO CargarImagenProducto(@RequestParam("imageFile") MultipartFile file, @PathVariable(value = "id")Long id)throws Exception{
+        return productoService.cargarImagenProducto(file,id);
     }
 }

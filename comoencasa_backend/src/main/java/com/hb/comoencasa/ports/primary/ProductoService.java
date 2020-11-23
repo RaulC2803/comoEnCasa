@@ -1,11 +1,13 @@
 package com.hb.comoencasa.ports.primary;
 
 import com.hb.comoencasa.domain.Producto;
+import com.hb.comoencasa.domain.ProductoDTO;
 import com.hb.comoencasa.domain.Resena;
 import com.hb.comoencasa.ports.secondary.ProductoRepository;
 import com.hb.comoencasa.ports.secondary.ResenaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,5 +90,24 @@ public class ProductoService {
         }
         return stars;
     }
+    
+    public ProductoDTO cargarImagenProducto(MultipartFile file, Long idProducto) throws Exception {
+        System.out.println("Original Image Byte Size - " + file.getBytes().length);
+        ProductoDTO bp = null;
+        Producto producto = obtenerProductoporId(idProducto);
+        if(bp == null){
+            System.out.println("No se encontró la Bodega");
+            throw new Exception("No se encontró la Bodega que busca");
+        }
+        else {
+            byte[] new_image = file.getBytes();
+            producto.setImagen(new_image);
+            bp = new ProductoDTO(producto);
+            productoRepository.save(producto);
+            System.out.println("Imagen del producto Guardada");
+            return bp;
+        }
+    }
+
 
 }

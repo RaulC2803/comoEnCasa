@@ -6,7 +6,7 @@ public class ProductoDTO {
     private double price;
     private String description;
     private String categoria;
-    private String images;
+    private byte[] imagen;
     private String tags;
     private double stock;
     private Long idVendedor;
@@ -25,7 +25,7 @@ public class ProductoDTO {
         this.price = producto.getPrice();
         this.description = producto.getDescription();
         this.categoria = producto.getCategoria();
-        this.images = producto.getImages();
+        this.imagen = producto.getImagen();
         this.tags = producto.getTags();
         this.stock = producto.getStock();
         this.idVendedor = producto.getVendedor().getIdVendedor();
@@ -107,15 +107,15 @@ public class ProductoDTO {
         this.categoria = categoria;
     }
 
-    public String getImages() {
-        return images;
-    }
+    public byte[] getImagen() {
+		return imagen;
+	}
 
-    public void setImages(String images) {
-        this.images = images;
-    }
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
 
-    public String getTags() {
+	public String getTags() {
         return tags;
     }
 
